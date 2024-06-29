@@ -17,9 +17,9 @@ local cams = {
     },
     {
         type = "selection",
-        x = -562.8157,
-        y = -3776.266,
-        z = 239.0805,
+        x = 1546.80,
+        y = 1187.90,
+        z = 284.29,
         rx = -4.2146,
         ry = -0.0007,
         rz = -87.8802,
@@ -29,23 +29,27 @@ local cams = {
 
 local function baseModel(sex)
     if (sex == 'mp_male') then
-        ApplyShopItemToPed(charPed, 0x158cb7f2, true, true, true); --head
-        ApplyShopItemToPed(charPed, 361562633,  true, true, true); --hair
+        ApplyShopItemToPed(charPed, 0xA11747C5, true, true, true); --head
+        ApplyShopItemToPed(charPed, -806294924,  true, true, true); --hair
         ApplyShopItemToPed(charPed, 62321923,   true, true, true); --hand
         ApplyShopItemToPed(charPed, 3550965899, true, true, true); --legs
         ApplyShopItemToPed(charPed, 612262189,  true, true, true); --Eye
-        ApplyShopItemToPed(charPed, 319152566,  true, true, true); --
-        ApplyShopItemToPed(charPed, 0x2CD2CB71, true, true, true); -- shirt
-        ApplyShopItemToPed(charPed, 0x151EAB71, true, true, true); -- bots
-        ApplyShopItemToPed(charPed, 0x1A6D27DD, true, true, true); -- pants
+        --ApplyShopItemToPed(charPed, 319152566,  true, true, true); -- beard
+        ApplyShopItemToPed(charPed, 2446083710, true, true, true); -- shirt
+        ApplyShopItemToPed(charPed, 3531230116, true, true, true); -- bots
+        ApplyShopItemToPed(charPed, 4288597979, true, true, true); -- pants
     else
-        ApplyShopItemToPed(charPed, 0x1E6FDDFB, true, true, true); -- head
-        ApplyShopItemToPed(charPed, 272798698,  true, true, true); -- hair
-        ApplyShopItemToPed(charPed, 869083847,  true, true, true); -- Eye
+        ApplyShopItemToPed(charPed, 0x7C1A194E, true, true, true); -- head
+        ApplyShopItemToPed(charPed, -37225494,  true, true, true); -- hair
+        ApplyShopItemToPed(charPed, 25757734,  true, true, true); -- Eye
         ApplyShopItemToPed(charPed, 736263364,  true, true, true); -- hand
-        ApplyShopItemToPed(charPed, 0x193FCEC4, true, true, true); -- shirt
-        ApplyShopItemToPed(charPed, 0x285F3566, true, true, true); -- pants
-        ApplyShopItemToPed(charPed, 0x134D7E03, true, true, true); -- bots
+        ApplyShopItemToPed(charPed, 4069644469, true, true, true); -- shirt
+        ApplyShopItemToPed(charPed, 185184716, true, true, true); -- pants
+        ApplyShopItemToPed(charPed, 3485733505, true, true, true); -- bots
+        ApplyShopItemToPed(charPed, 1243012162, true, true, true); -- hairacc
+        ApplyShopItemToPed(charPed, 2861379350, true, true, true); -- rindleft
+		ApplyShopItemToPed(charPed, 2891440640, true, true, true); -- ringright
+		ApplyShopItemToPed(charPed, 948647349, true, true, true); -- coat
     end
 end
 
@@ -55,16 +59,16 @@ local function skyCam(bool)
         SetTimecycleModifier('hud_def_blur')
         SetTimecycleModifierStrength(1.0)
         cam = CreateCam("DEFAULT_SCRIPTED_CAMERA")
-        SetCamCoord(cam, -555.925, -3778.709, 238.597)
+        SetCamCoord(cam, 1548.80, 1187.90, 284.29)
         SetCamRot(cam, -20.0, 0.0, 83)
         SetCamActive(cam, true)
         RenderScriptCams(true, false, 1, true, true)
         fixedCam = CreateCam("DEFAULT_SCRIPTED_CAMERA")
-        SetCamCoord(fixedCam, -561.206, -3776.224, 239.597)
-        SetCamRot(fixedCam, -20.0, 0, 270.0)
+        SetCamCoord(fixedCam, 1545.80, 1187.90, 284.29)
+        SetCamRot(fixedCam, 0.0, 0.0, 100.0)
         SetCamActive(fixedCam, true)
-        SetCamActiveWithInterp(fixedCam, cam, 3900, true, true)
-        Wait(3900)
+        SetCamActiveWithInterp(fixedCam, cam, 8000, true, true)
+        Wait(5900)
         DestroyCam(groundCam)
         InterP = true
     else
@@ -110,19 +114,21 @@ RegisterNetEvent('rsg-multicharacter:client:chooseChar', function()
     SetNuiFocus(false, false)
     DoScreenFadeOut(10)
     Wait(1000)
-    GetInteriorAtCoords(-558.9098, -3775.616, 238.59, 137.98)
+    GetInteriorAtCoords(1542.79, 1187.29, 283.18, -91.68)
     FreezeEntityPosition(PlayerPedId(), true)
-    SetEntityCoords(PlayerPedId(), -562.91,-3776.25,237.63)
+    SetEntityCoords(PlayerPedId(), 1542.79, 1187.29, 283.18)
     Wait(1500)
     ShutdownLoadingScreen()
     ShutdownLoadingScreenNui()
     Wait(10)
-    exports.weathersync:setMyTime(0, 0, 0, 0, true)
+    exports.weathersync:setMyTime(21, 0, 0, 0, true)
+	exports.weathersync:setMyWeather("sunny", 10.0, false, false)
     openCharMenu(true)
+    Wait(3000)
     while selectingChar do
         Wait(1)
         local coords = GetEntityCoords(PlayerPedId())
-        DrawLightWithRange(coords.x, coords.y , coords.z + 1.0 , 255, 255, 255, 5.5, 50.0)
+        DrawLightWithRange(coords.x + 10.0, coords.y , coords.z + 10.0 , 255, 255, 255, 15.0, 15.0)
     end
 end)
 
@@ -143,8 +149,19 @@ RegisterNUICallback('cDataPed', function(data) -- Visually seeing the char
                     while not HasModelLoaded(sex) do
                         Wait(0)
                     end
-                    charPed = CreatePed(sex, -558.91, -3776.25, 237.63, 90.0, false, false)
+                    charPed = CreatePed(sex, 1544.10, 1187.65, 283.18, -91.68, false, false)
                     FreezeEntityPosition(charPed, false)
+					-- SCENARIO  ---------------------------------------------------------------
+					if IsPedMale(charPed) and 'mp_male' then
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_C'), -1, true)
+					else
+						if not IsPedMale(charPed) and 'mp_female' then
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_G'), -1, true)
+						else
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_D'), -1, true)
+						end
+					end
+					-----------------------------------------------------------------------------
                     SetEntityInvincible(charPed, true)
                     SetBlockingOfNonTemporaryEvents(charPed, true)
                     while not IsPedReadyToRender(charPed) do
@@ -164,9 +181,20 @@ RegisterNUICallback('cDataPed', function(data) -- Visually seeing the char
                     while not HasModelLoaded(model) do
                         Wait(0)
                     end
+					-- SCENARIO  ---------------------------------------------------------------
+					if IsPedMale(charPed) and 'mp_male' then
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_C'), -1, true)
+					else
+						if not IsPedMale(charPed) and 'mp_female' then
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_G'), -1, true)
+						else
+						TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_D'), -1, true)
+						end
+					end
+					-----------------------------------------------------------------------------
                     Wait(100)
                     baseModel(randomModel)
-                    charPed = CreatePed(model, -558.91, -3776.25, 237.63, 90.0, false, false)
+                    charPed = CreatePed(model, 1544.10, 1187.65, 283.18, -91.68, false, false)
                     FreezeEntityPosition(charPed, false)
                     SetEntityInvincible(charPed, true)
                     SetBlockingOfNonTemporaryEvents(charPed, true)
@@ -185,7 +213,18 @@ RegisterNUICallback('cDataPed', function(data) -- Visually seeing the char
             while not HasModelLoaded(model) do
                 Wait(0)
             end
-            charPed = CreatePed(model, -558.91, -3776.25, 237.63, 90.0, false, false)
+            charPed = CreatePed(model, 1544.10, 1187.65, 283.18, -91.68, false, false)
+			-- SCENARIO  ---------------------------------------------------------------
+			if IsPedMale(charPed) and 'mp_male' then
+				TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_C'), -1, true)
+			else
+				if not IsPedMale(charPed) and 'mp_female' then
+				TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_G'), -1, true)
+				else
+				TaskStartScenarioInPlace(charPed, joaat('MP_LOBBY_STANDING_D'), -1, true)
+				end
+			end
+			-----------------------------------------------------------------------------
             Wait(100)
             baseModel(randomModel)
             FreezeEntityPosition(charPed, false)
@@ -236,7 +275,7 @@ RegisterNUICallback('setupCharacters', function() -- Present char info
     RSGCore.Functions.TriggerCallback("rsg-multicharacter:server:setupCharacters", function(result)
         SendNUIMessage({
             action = "setupCharacters",
-            characters = result
+            characters = result,
         })
     end)
 end)
@@ -273,6 +312,7 @@ CreateThread(function()
     RequestImap(183712523)
 
     TriggerEvent('rsg-multicharacter:client:chooseChar')
+
     isChossing = true
         CreateThread(function()
             while isChossing do
