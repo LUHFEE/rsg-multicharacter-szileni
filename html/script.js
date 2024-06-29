@@ -90,11 +90,14 @@ function setupCharInfo(cData) {
         var gender = "Man"
         if (cData.charinfo.gender == 1) { gender = "Woman" }
         $('.character-info-valid').html(
-        '<div class="character-info-box"><span id="info-label">Name: </span><span class="char-info-js">'+cData.charinfo.firstname+' '+cData.charinfo.lastname+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Birth date: </span><span class="char-info-js">'+cData.charinfo.birthdate+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Nationality: </span><span class="char-info-js">'+cData.charinfo.nationality+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Job: </span><span class="char-info-js">'+cData.job.label+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Cash: </span><span class="char-info-js">&#36; '+cData.money.cash+'</span></div>');
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-user"> <span id="info-label">NAME :</i> </span><span class="char-info-js">'+cData.charinfo.firstname+' '+cData.charinfo.lastname+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-calendar"> <span id="info-label">BIRTH DATE :</i> </span><span class="char-info-js">'+cData.charinfo.birthdate+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-address-card"> <span id="info-label">NATIONALITY :</i> </span><span class="char-info-js">'+cData.charinfo.nationality+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-briefcase"> <span id="info-label">JOB :</i> </span><span class="char-info-js">'+cData.job.label+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-users"> <span id="info-label">GANG :</i> </span><span class="char-info-js">'+cData.gang.label+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-wallet"> <span id="info-label">CASH :</i> </span><span class="char-info-js">&#36; '+cData.money.cash+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-piggy-bank"> <span id="info-label">BANK :</i> </span><span class="char-info-js">&#36; '+cData.money.bank+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label"><i class="fas fa-money-bill-alt"> <span id="info-label">BLOODMONEY :</i> </span><span class="char-info-js">&#36; '+cData.money.bloodmoney+'</span></div>');
     }
 }
 
@@ -220,7 +223,7 @@ $(document).on('click', '#cancel-delete', function(e){
 });
 
 function setCharactersList() {
-    var htmlResult = '<div class="character-list-header"><p>My Characters</p></div>'
+    var htmlResult = '<div class="character-list-header"><p>'+characters_header+'</p></div>'
     for (let i = 1; i <= NChar; i++) {
         htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Empty Slot<span id="cid"></span></span></div>'
     }
