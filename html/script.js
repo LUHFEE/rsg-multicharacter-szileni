@@ -223,7 +223,7 @@ $(document).on('click', '#cancel-delete', function(e){
 });
 
 function setCharactersList() {
-    var htmlResult = '<div class="character-list-header"><p>'+characters_header+'</p></div>'
+    var htmlResult = '<div class="character-list-header"><p>My Characters</p></div>'
     for (let i = 1; i <= NChar; i++) {
         htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Empty Slot<span id="cid"></span></span></div>'
     }
