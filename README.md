@@ -4,7 +4,7 @@
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Usage: Put in resource folder and "ensure rsg-multicharacter-szileni" in server.cfg
+Usage: Put in resource folder and "ensure rsg-multicharacter" in server.cfg
 
 Updated "main.lua" (at least 5 changes have made)
 + Changed multichar lobby (camera locs
